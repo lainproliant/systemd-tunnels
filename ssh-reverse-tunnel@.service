@@ -3,7 +3,7 @@ Description=Setup a secure forward tunnel to %I
 After=network.target
 
 [Service]
-EnvironmentFile=/etc/default/secure-tunnel@%i
+EnvironmentFile=/etc/default/ssh-reverse-tunnel@%i
 ExecStart=/usr/bin/ssh -NT -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R ${LOCAL_PORT}:${REMOTE_HOST}:${REMOTE_PORT} ${TUSER}@${TARGET}
 # Restart every >2 seconds to avoid StartLimitInterval failure
 RestartSec=5
