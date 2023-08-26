@@ -3,9 +3,12 @@ SSH tunnel service scripts, based on the helpful [guide](https://medium.com/linu
 ## Setup
 Run the `./install.sh` script included in this repo.
 
-## For Forward Tunnels
+## Configuration Steps
+See `./examples` for config file examples.  Follow the guides below to setup forward or reverse tunnels.
+
+### Forward Tunnels
 1. Decide on a name for your tunnel, i.e. `example.com`.
-2. Create a config file at `/etc/default/ssh-forward-tunnel@example.com` with the following variables set:
+2. Create a config file at `/etc/default/ssh-forward-tunnel@example.com.conf` with the following variables set:
     - `RUNAS_USER=your_username`
         - This is the user the tunnel will run as, can influence which SSH keys
           are used to connect by default and prevents the tunnel running as `root`.
@@ -21,9 +24,9 @@ Run the `./install.sh` script included in this repo.
         - This is the port on the remote host that TCP from LOCAL_PORT will be redirected to.
 3. Enable the service: `sudo systemctl enable ssh-forward-tunnel@example.com`.
 
-## For Reverse Tunnels
+### Reverse Tunnels
 1. Decide on a name for your tunnel, i.e. `example.com`.
-2. Create a config file at `/etc/default/ssh-forward-tunnel@example.com` with the following variables set:
+2. Create a config file at `/etc/default/ssh-forward-tunnel@example.com.conf` with the following variables set:
     - `RUNAS_USER=your_username`
         - This is the user the tunnel will run as, can influence which SSH keys
           are used to connect by default and prevents the tunnel running as `root`.
