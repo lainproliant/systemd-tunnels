@@ -3,8 +3,8 @@ Description=Setup a secure forward tunnel to %I
 After=network.target
 
 [Service]
-EnvironmentFile=/etc/default/ssh-reverse-tunnel@%i
-ExecStart=sudo -u ${RUNAS_USER} /usr/bin/ssh -NT -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R ${LOCAL_PORT}:${REMOTE_HOST}:${REMOTE_PORT} ${TUSER}@${TARGET}
+EnvironmentFile=/etc/default/ssh-reverse-tunnel@%i.conf
+ExecStart=sudo -u ${RUNAS_USER} /usr/bin/ssh -NT -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o ServerAliveCountMax=3 -R ${LOCAL_PORT}:${REMOTE_HOST}:${REMOTE_PORT} ${TUSER}@${TARGET}
 # Restart every >2 seconds to avoid StartLimitInterval failure
 RestartSec=5
 Restart=always
